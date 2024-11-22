@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Anket Uygulaması</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="javas.js"></script>
+</head>
+<body>
+    <header>
+        <h1> Anket Uygulaması</h1>
+    </header>
+
+    <section id="anket-olustur">
+        <h2>Yeni Anket Oluştur</h2>
+        <form id="anketForm">
+            <label for="anketBaslik">Anket Başlığı:</label>
+            <input type="text" id="anketBaslik" name="anketBaslik" placeholder="Anket başlığını girin" required>
+
+            <label for="anketKategori">Kategori Seçin:</label>
+            <select id="anketKategori" name="anketKategori">
+                <option value="teknoloji">Teknoloji</option>
+                <option value="saglik">Sağlık</option>
+                <option value="spor">Spor</option>
+                <option value="egitim">Eğitim</option>
+            </select>
+
+            <label for="anketSoru">Anket Sorusu:</label>
+            <input type="text" id="anketSoru" name="anketSoru" placeholder="Anket sorusunu yazın" required>
+
+            <label for="anketSecenekler">Seçenekler (Virgülle ayırın):</label>
+            <input type="text" id="anketSecenekler" name="anketSecenekler" placeholder="Seçenek1, Seçenek2, Seçenek3" required>
+
+            <button type="submit">Anketi Oluştur</button>
+        </form>
+    </section>
+
+    <section id="anketler">
+        <h2>Aktif Anketler</h2>
+        <div id="kategoriFiltre">
+            <label for="kategori">Kategori Filtrele:</label>
+            <select id="kategori">
+                <option value="tümü">Tümü</option>
+                <option value="teknoloji">Teknoloji</option>
+                <option value="saglik">Sağlık</option>
+                <option value="spor">Spor</option>
+                <option value="egitim">Eğitim</option>
+            </select>
+        </div>
+        <div id="anketListe"></div>
+    </section>
+
+    <footer>
+        <p> Anket Uygulaması</p>
+    </footer>
+
+    
+</body>
+</html>

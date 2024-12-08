@@ -1,0 +1,87 @@
+
+/* Form stili */
+form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Anket listesi */
+#anketListe {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.anket-item {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.anket-item h3 {
+    margin: 0 0 10px 0;
+    color: #222;
+}
+
+.anket-item p {
+    margin: 0 0 10px 0;
+    color: #666;
+}
+
+/* Listeleme */
+.anket-item ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.anket-item ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Filtreleme */
+#kategoriFiltre {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#kategoriFiltre select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: auto;
+}
+
+/* Özel buton hover efekti */
+button#anketGoruntule {
+    background-color: #28a745;
+    color: white;
+}
+
+button#anketGoruntule:hover {
+    background-color: #218838;
+}
+

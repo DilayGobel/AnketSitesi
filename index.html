@@ -3,58 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Anket Uygulaması</title>
-    <link rel="stylesheet" href="main.css">
-    <script src="javas.js"></script>
+    <title>Modern Anket Uygulaması</title>
+    <link rel="stylesheet" href="anketler.css">
+    <script src="javas.js" defer></script>
 </head>
 <body>
     <header>
-        <h1> Anket Uygulaması</h1>
+        <h1>Modern Anket Uygulaması</h1>
+        <p>Kendi anketlerinizi oluşturun ve paylaşın!</p>
     </header>
 
-    <section id="anket-olustur">
-        <h2>Yeni Anket Oluştur</h2>
-        <form id="anketForm">
-            <label for="anketBaslik">Anket Başlığı:</label>
-            <input type="text" id="anketBaslik" name="anketBaslik" placeholder="Anket başlığını girin" required>
+    <main>
+        <!-- Anket Oluştur -->
+        <section>
+            <h2>Yeni Anket Oluştur</h2>
+            <form id="anketForm">
+                <label for="anketBaslik">Anket Başlığı:</label>
+                <input type="text" id="anketBaslik" name="anketBaslik" required>
 
-            <label for="anketKategori">Kategori Seçin:</label>
-            <select id="anketKategori" name="anketKategori">
-                <option value="teknoloji">Teknoloji</option>
-                <option value="saglik">Sağlık</option>
-                <option value="spor">Spor</option>
-                <option value="egitim">Eğitim</option>
-            </select>
+                <label for="anketKategori">Kategori:</label>
+                <select id="anketKategori" name="anketKategori" required>
+                    <option value="" disabled selected>Kategori seçin...</option>
+                    <option value="teknoloji">Teknoloji</option>
+                    <option value="saglik">Sağlık</option>
+                    <option value="spor">Spor</option>
+                    <option value="egitim">Eğitim</option>
+                </select>
 
-            <label for="anketSoru">Anket Sorusu:</label>
-            <input type="text" id="anketSoru" name="anketSoru" placeholder="Anket sorusunu yazın" required>
+                
+                <label for="anketSoru">Anket Sorusu:</label>
+                <input type="text" id="anketSoru" name="anketSoru" required>
 
-            <label for="anketSecenekler">Seçenekler (Virgülle ayırın):</label>
-            <input type="text" id="anketSecenekler" name="anketSecenekler" placeholder="Seçenek1, Seçenek2, Seçenek3" required>
+                <label for="anketSecenekler">Seçenekler (virgülle ayırın):</label>
+                <input type="text" id="anketSecenekler" name="anketSecenekler" required>
 
-            <button type="submit">Anketi Oluştur</button>
-        </form>
-    </section>
+                <button type="submit">Anket Oluştur</button>
+            </form>
+        </section>
 
-    <section id="anketler">
-        <h2>Aktif Anketler</h2>
-        <div id="kategoriFiltre">
-            <label for="kategori">Kategori Filtrele:</label>
-            <select id="kategori">
-                <option value="tümü">Tümü</option>
-                <option value="teknoloji">Teknoloji</option>
-                <option value="saglik">Sağlık</option>
-                <option value="spor">Spor</option>
-                <option value="egitim">Eğitim</option>
-            </select>
-        </div>
-        <div id="anketListe"></div>
-    </section>
+        <!-- Son Anket -->
+        <section id="sonAnketContainer">
+            <h2>Son Oluşturulan Anket</h2>
+            <div id="sonAnket"></div>
+        </section>
+
+        <!-- Anketler Sayfasına Git -->
+        <section>
+            <button onclick="window.location.href='anketler.html'" style="margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Anketleri Görüntüle
+            </button>
+        </section>
+    </main>
 
     <footer>
-        <p> Anket Uygulaması</p>
+        <p>© 2024 Modern Anket Uygulaması</p>
     </footer>
-
-    
 </body>
 </html>

@@ -1,99 +1,108 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const anketForm = document.getElementById('anketForm');
+document.addEventListener('DOMContentLoaded', function () {
     const anketListe = document.getElementById('anketListe');
-    const kategoriSelect = document.getElementById('kategori');
-    
-    
-    const anketler = [];
-    const userVotes = {};  
+    const sonAnketContainer = document.getElementById('sonAnket');
 
-    
-    anketForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    let anketler = JSON.parse(localStorage.getItem('anketler')) || [];
+    let oylananAnketler = JSON.parse(localStorage.getItem('oylananAnketler')) || {}; // Oy bilgileri
 
-        
-        const anketBaslik = document.getElementById('anketBaslik').value;
-        const anketKategori = document.getElementById('anketKategori').value;
-        const anketSoru = document.getElementById('anketSoru').value;
-        const anketSecenekler = document.getElementById('anketSecenekler').value.split(',');
 
-        
-        const yeniAnket = {
-            baslik: anketBaslik,
-            kategori: anketKategori,
-            soru: anketSoru,
-            secenekler: anketSecenekler,
-            oylar: new Array(anketSecenekler.length).fill(0), 
-            oyVerenler: new Array(anketSecenekler.length).fill([]) 
-        };
+    // Tüm Anketleri Göster
+    function renderTumu() {
+        if (!anketListe) return;
 
-        
-        anketler.push(yeniAnket);
-        
-        renderAnketler();
+        if (anketler.length === 0) {
+            anketListe.innerHTML = '<p>Hiç anket bulunamadı.</p>';
+            return;
+        }
 
-        anketForm.reset();
-    });
-
-    
-    kategoriSelect.addEventListener('change', function() {
-        renderAnketler(); 
-    });
-
-    
-    function renderAnketler() {
-        
         anketListe.innerHTML = '';
-
-        
-        const selectedCategory = kategoriSelect.value;
-
-        const filteredAnketler = selectedCategory === 'tümü'
-            ? anketler 
-            : anketler.filter(anket => anket.kategori === selectedCategory); 
-
-       
-        filteredAnketler.forEach((anket, index) => {
+        anketler.forEach((anket, index) => {
             const anketItem = document.createElement('div');
-            anketItem.classList.add('anket-item');
+            anketItem.className = 'anket-item';
+
             anketItem.innerHTML = `
                 <h3>${anket.baslik}</h3>
                 <p><strong>Soru:</strong> ${anket.soru}</p>
                 <p><strong>Kategori:</strong> ${anket.kategori}</p>
                 <ul>
-                    ${anket.secenekler.map((secenek, idx) => `
+                    ${anket.secenekler
+                        .map(
+                            (secenek, idx) => `
                         <li>
                             ${secenek} - ${anket.oylar[idx]} oy
-                            <button onclick="oyVer(${index}, ${idx})" id="oyButton-${index}-${idx}">
+                            <button onclick="oyVer(${index}, ${idx})" id="oyButton-${index}-${idx}" ${
+                                oylananAnketler[index] !== undefined
+                                    ? 'disabled'
+                                    : ''
+                            }>
                                 Oy Ver
                             </button>
                         </li>
-                    `).join('')}
+                    `
+                        )
+                        .join('')}
                 </ul>
             `;
+
             anketListe.appendChild(anketItem);
         });
     }
 
- 
-    window.oyVer = function(anketIndex, secenekIndex) {
-        const currentAnket = anketler[anketIndex];
+    // Son Anketi Göster
+    function renderSonAnket() {
+        if (!sonAnketContainer || anketler.length === 0) return;
 
+        const sonAnket = anketler[anketler.length - 1];
+        sonAnketContainer.innerHTML = `
+            <div class="anket-item">
+                <h3>${sonAnket.baslik}</h3>
+                <p><strong>Soru:</strong> ${sonAnket.soru}</p>
+                <p><strong>Kategori:</strong> ${sonAnket.kategori}</p>
+                <ul>
+                    ${sonAnket.secenekler
+                        .map(
+                            (secenek, idx) => `
+                        <li>
+                            ${secenek} - ${sonAnket.oylar[idx]} oy
+                            <button onclick="oyVer(${anketler.length - 1}, ${idx})" id="oyButton-${anketler.length - 1}-${idx}" ${
+                                oylananAnketler[anketler.length - 1] !== undefined
+                                    ? 'disabled'
+                                    : ''
+                            }>
+                                Oy Ver
+                            </button>
+                        </li>
+                    `
+                        )
+                        .join('')}
+                </ul>
+            </div>
+        `;
+    }
 
-        if (userVotes[currentAnket.baslik]) {
-            alert("Bu ankete yalnızca bir kez oy verebilirsiniz!");
+    // Oy Kullanma
+    window.oyVer = function (anketIndex, secenekIndex) {
+        // Oy verme kontrolü
+        if (oylananAnketler[anketIndex] !== undefined) {
+            showToast('Hata: Bu ankete yalnızca bir kez oy verebilirsiniz!');
             return;
         }
 
-
-        currentAnket.oyVerenler[secenekIndex].push('user'); 
-
-
+        // Oy verme işlemi
+        const currentAnket = anketler[anketIndex];
         currentAnket.oylar[secenekIndex]++;
+        oylananAnketler[anketIndex] = secenekIndex; // Kullanıcının oyu kaydediliyor
 
+        localStorage.setItem('anketler', JSON.stringify(anketler));
+        localStorage.setItem('oylananAnketler', JSON.stringify(oylananAnketler));
 
-        userVotes[currentAnket.baslik] = true;  
-
-        renderAnketler();
+        renderTumu(); // Listeyi güncelle
+        renderSonAnket(); // Son anketi güncelle
     };
+
+
+
+    // Sayfaya Göre Fonksiyonları Çağır
+    if (anketListe) renderTumu();
+    if (sonAnketContainer) renderSonAnket();
 });

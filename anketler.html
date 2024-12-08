@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anketler</title>
+    <link rel="stylesheet" href="anketler.css">
+    <script src="anketler.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Mevcut Anketler</h1>
+    </header>
+
+    <main>
+        <section id="anketler">
+            <h2>Anket Listesi</h2>
+            <div id="anketListe"></div>
+        </section>
+
+        <!-- Butonlar -->
+        <section style="margin-top: 20px;">
+            <!-- Anasayfaya Dön Butonu -->
+            <button onclick="window.location.href='index.html'" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+                Anasayfaya Dön
+            </button>
+
+            <!-- Anketleri Sıfırla Butonu -->
+            <button onclick="resetAnketler()" style="padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Anketleri Sıfırla
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Modern Anket Uygulaması</p>
+    </footer>
+</body>
+</html>

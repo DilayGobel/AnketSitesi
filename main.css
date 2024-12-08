@@ -1,4 +1,3 @@
-/* Genel sayfa stili */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -8,7 +7,6 @@ body {
     padding: 0;
 }
 
-/* Başlık ve genel tasarım */
 header {
     background-color: #007bff;
     color: white;
@@ -27,7 +25,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Bölüm genel tasarımı */
 .container {
     max-width: 800px;
     margin: auto;
@@ -44,7 +41,6 @@ footer {
     color: white;
 }
 
-/* Butonlar */
 button {
     padding: 10px 20px;
     background-color: #007bff;
@@ -65,7 +61,6 @@ a button {
     text-decoration: none;
 }
 
-/* Bildirim (Toast) Stili */
 .toast {
     position: fixed;
     top: 20px;

@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let oylananAnketler = JSON.parse(localStorage.getItem('oylananAnketler')) || {}; // Oy bilgileri
 
 
-    // Tüm Anketleri Göster
     function renderTumu() {
         if (!anketListe) return;
 
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Son Anketi Göster
     function renderSonAnket() {
         if (!sonAnketContainer || anketler.length === 0) return;
 
@@ -80,29 +78,25 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
     }
 
-    // Oy Kullanma
     window.oyVer = function (anketIndex, secenekIndex) {
-        // Oy verme kontrolü
         if (oylananAnketler[anketIndex] !== undefined) {
             showToast('Hata: Bu ankete yalnızca bir kez oy verebilirsiniz!');
             return;
         }
 
-        // Oy verme işlemi
         const currentAnket = anketler[anketIndex];
         currentAnket.oylar[secenekIndex]++;
-        oylananAnketler[anketIndex] = secenekIndex; // Kullanıcının oyu kaydediliyor
+        oylananAnketler[anketIndex] = secenekIndex; 
 
         localStorage.setItem('anketler', JSON.stringify(anketler));
         localStorage.setItem('oylananAnketler', JSON.stringify(oylananAnketler));
 
-        renderTumu(); // Listeyi güncelle
-        renderSonAnket(); // Son anketi güncelle
+        renderTumu(); 
+        renderSonAnket(); 
     };
 
 
 
-    // Sayfaya Göre Fonksiyonları Çağır
     if (anketListe) renderTumu();
     if (sonAnketContainer) renderSonAnket();
 });

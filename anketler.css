@@ -1,5 +1,4 @@
 
-/* Form stili */
 form label {
     font-weight: bold;
     margin-bottom: 0.5rem;
@@ -22,7 +21,6 @@ input:focus, select:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Anket listesi */
 #anketListe {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -47,7 +45,6 @@ input:focus, select:focus {
     color: #666;
 }
 
-/* Listeleme */
 .anket-item ul {
     list-style-type: none;
     padding: 0;
@@ -59,7 +56,6 @@ input:focus, select:focus {
     font-size: 14px;
 }
 
-/* Filtreleme */
 #kategoriFiltre {
     margin-bottom: 20px;
     display: flex;
@@ -75,7 +71,6 @@ input:focus, select:focus {
     width: auto;
 }
 
-/* Özel buton hover efekti */
 button#anketGoruntule {
     background-color: #28a745;
     color: white;

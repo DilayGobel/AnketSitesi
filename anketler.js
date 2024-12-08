@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let anketler = JSON.parse(localStorage.getItem('anketler')) || [];
     let oylananAnketler = JSON.parse(localStorage.getItem('oylananAnketler')) || {}; // Oy bilgileri
 
-    // Tüm Anketleri Göster
     function renderTumu() {
         if (!anketListe) return;
 
@@ -43,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
    
 
-    // Anketleri sıfırlama fonksiyonu
     window.resetAnketler = function () {
         if (confirm('Tüm anketleri silmek istediğinize emin misiniz?')) {
             localStorage.removeItem('anketler');
@@ -55,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    // Sayfaya Göre Fonksiyonları Çağır
     if (anketListe) renderTumu();
     if (sonAnketContainer) renderSonAnket();
 });
